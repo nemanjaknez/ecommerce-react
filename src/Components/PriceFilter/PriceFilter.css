@@ -1,0 +1,26 @@
+.price-filter .price-label-holder {
+    margin-top: 20px;
+}
+
+.price-filter .price-label {
+    margin-right: 5px;
+}
+
+.price-filter .dash {
+    margin: 0 5px;
+}
+
+.range-slider {
+    border-radius: 0;
+    height: 3px;
+}
+
+.range-slider .range-slider__range {
+    background-color: var(--dark-background-color);
+}
+
+.range-slider .range-slider__thumb {
+    background-color: var(--dark-background-color);
+    height: 9px;
+    width: 9px;
+}

@@ -2,8 +2,7 @@ import { useState, useContext, useEffect, useRef } from 'react';
 import { ShopContext } from '../Context/ShopContext';
 import ProductListItem from '../Components/ProductListItem/ProductListItem';
 import Sort from '../Components/Sort/Sort';
-import RangeSlider from 'react-range-slider-input';
-import 'react-range-slider-input/dist/style.css';
+import PriceFilter from '../Components/PriceFilter/PriceFilter';
 
 const ShopWithFilters = () => {
 
@@ -66,24 +65,12 @@ const ShopWithFilters = () => {
                     ))}
                 </div>
                 <div className="sidebar">
-                    {typeof(minPrice.current) === 'number' && typeof(maxPrice.current) === 'number' && (
-                        <div className="price-filter">
-                            <h4>Filter by Price</h4>
-                            <RangeSlider
-                                min={minPrice.current}
-                                max={maxPrice.current}
-                                defaultValue={priceRange}
-                                step={10}
-                                onInput={(value) => handlePriceFilter(value)}
-                            />
-                            <div className="price-label-holder">
-                                <span className="price-label">Price:</span>
-                                <span className="min-price">${priceRange[0]}</span>
-                                <span className="dash">-</span>
-                                <span className="max-price">${priceRange[1]}</span>
-                            </div>
-                        </div>
-                    )}
+                    <PriceFilter
+                        minPrice={minPrice.current}
+                        maxPrice={maxPrice.current}
+                        priceRange={priceRange}
+                        handlePriceFilter={handlePriceFilter}
+                    />
                 </div>
             </div>
         </div>
