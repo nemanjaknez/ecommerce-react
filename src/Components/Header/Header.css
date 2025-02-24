@@ -1,0 +1,37 @@
+header {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    column-gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+header nav li {
+    position: relative;
+}
+
+header nav li span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    display: block;
+    background-color: var(--dark-background-color);
+}
+
+.additional-links {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}

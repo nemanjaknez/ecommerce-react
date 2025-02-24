@@ -1,0 +1,19 @@
+.rating-holder {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.rating {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.rating .active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}

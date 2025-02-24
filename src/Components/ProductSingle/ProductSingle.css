@@ -1,0 +1,95 @@
+.product-single .content-top {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+}
+
+.product-single img {
+    display: block;
+    max-width: 100%;
+}
+
+.product-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-summary ul li {
+    padding: 5px 0;
+}
+
+.add-to-cart {
+    margin-top: 30px;
+}
+
+.content-bottom {
+    margin-top: 70px;
+}
+
+.content-bottom ul.tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content-bottom ul.tabs li {
+    margin-right: 50px;
+    cursor: pointer;
+    position: relative;
+    padding: 15px 0;
+}
+
+.content-bottom .tabs > li:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.content-bottom .tabs > li.active:after {
+    opacity: 1;
+    visibility: visible;
+} 
+
+.reviews-section label {
+    display: block;
+    margin: 0 0 10px;
+}
+
+.reviews-section textarea {
+    width: 100%;
+    height: 100px;
+}
+
+.reviews-section textarea {
+    width: 100%;
+    height: 100px;
+}
+
+.additional-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.additional-info ul li {
+    padding: 0 0 10px;
+}
+
+.additional-info ul li:last-child {
+    padding-bottom: 0;
+}
+
+.additional-info ul li span:not(:last-child):after {
+    content: ',';
+    margin-right: 5px;
+}
