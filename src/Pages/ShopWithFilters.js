@@ -3,6 +3,7 @@ import { ShopContext } from '../Context/ShopContext';
 import ProductListItem from '../Components/ProductListItem/ProductListItem';
 import Sort from '../Components/Sort/Sort';
 import PriceFilter from '../Components/PriceFilter/PriceFilter';
+import Checkbox from '../Components/Checkbox/Checkbox';
 
 const ShopWithFilters = () => {
 
@@ -11,6 +12,14 @@ const ShopWithFilters = () => {
     const [sortedData, setSortedData] = useState([]);
 
     const [priceRange, setPriceRange] = useState([100,10000]);
+
+    const [filteredData, setFilteredData] = useState([]);
+
+    useEffect(() => {
+        if (data.length === 0) return;
+
+        setFilteredData(data);
+    }, [data]);
 
     let minPrice = useRef();
     let maxPrice = useRef();
@@ -53,6 +62,46 @@ const ShopWithFilters = () => {
         setSortedData(filteredData);
     }, [priceRange, data]);
 
+    //get all movement types
+    useEffect(() => {
+        if (filteredData.length === 0) return;
+
+        let types = [];
+
+        for(let item of filteredData) {
+            if(! types.includes(item.details.movement)) {
+                types.push(item.details.movement);
+            }
+        }
+
+        setMovementTypes(types);
+
+    }, [filteredData]);
+
+    const [movementTypes, setMovementTypes] = useState([]);
+    const [checkedValues, setCheckedValues] = useState([]);
+
+    const getCheckedValue = (obj) => {
+        setCheckedValues(prev => {
+            const key = Object.keys(obj)[0];
+            if (obj[key]) {
+                return [...prev, key];
+            } else {
+                return prev.filter(item => item !== key);
+            }
+        });
+    }
+
+    useEffect(() => {
+
+        if(checkedValues.length) {
+            setSortedData(data.filter((item) => checkedValues.includes(item.details.movement)));
+        } else {
+            setSortedData(data);
+        }
+        
+    }, [data, checkedValues]);
+
     return(
         <div>
             <h1>Shop With Filters</h1>
@@ -71,6 +120,17 @@ const ShopWithFilters = () => {
                         priceRange={priceRange}
                         handlePriceFilter={handlePriceFilter}
                     />
+
+                    <div className="custom-filter">
+                        <h4>Movement Type</h4>
+                        <ul>
+                            {movementTypes.map((item, index) => (
+                                <li key={index}>
+                                    <Checkbox item={item} index={index} getCheckedValue={getCheckedValue} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

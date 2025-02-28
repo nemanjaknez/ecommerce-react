@@ -1,9 +1,10 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
 import Rating from '../Rating/Rating';
 import './ProductSingle.css';
 import '../../Assets/Images/img1.jpg';
+import ReviewForm from '../ReviewForm/ReviewForm';
 
 const ProductSingle = () => {
 
@@ -12,7 +13,18 @@ const ProductSingle = () => {
 
     const [activeTab, setActiveTab] = useState('info');
 
-    const product = data.find((item) => item.id === Number(productId));
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+        setProduct(data.find((item) => item.id === Number(productId)));
+    }, [data]);
+
+    const getFormData = (formData) => {
+        setProduct(prevProduct => ({
+            ...prevProduct,
+            reviews: [...(prevProduct.reviews || []), formData]
+        }));
+    };
 
     let image;
 
@@ -57,11 +69,11 @@ const ProductSingle = () => {
                 </ul>
                 <div className="additional-info" style={ activeTab !== 'info' ? { display:'none'} : {}}>
                     <ul>
-                        <li>Movement: <span>{product?.details.movement}</span></li>
-                        <li>Case Material: <span>{product?.details.case_material}</span></li>
-                        <li>Water Resistance: <span>{product?.details.water_resistance}</span></li>
+                        <li>Movement: <span>{product?.details?.movement}</span></li>
+                        <li>Case Material: <span>{product?.details?.case_material}</span></li>
+                        <li>Water Resistance: <span>{product?.details?.water_resistance}</span></li>
                         <li>Features: 
-                            {product?.details.features.map((feature, index) => (
+                            {product?.details?.features.map((feature, index) => (
                                 <span key={index}>{feature}</span>
                             ))}
                         </li>
@@ -78,22 +90,7 @@ const ProductSingle = () => {
                             </div>
                         ))}
                     </div>
-                    <div className='review-form-holder'>
-                        <div>
-                            <label>Your comment...</label>
-                            <textarea rows="5"></textarea>
-                        </div>
-                        <div className='two-columns'>
-                            <div className='input-holder'>
-                                <label htmlFor='user-name'>Your name</label>
-                                <input type='text' id='user-name' />
-                            </div>
-                            <div className='input-holder'>
-                                <label htmlFor='user-email'>Your email</label>
-                                <input type='email' id='user-email' />
-                            </div>
-                        </div>
-                    </div>
+                    <ReviewForm getFormData={getFormData}/>
                 </div>
             </div>
         </div>

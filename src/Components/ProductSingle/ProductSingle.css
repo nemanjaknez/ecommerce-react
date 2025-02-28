@@ -58,21 +58,10 @@
 .content-bottom .tabs > li.active:after {
     opacity: 1;
     visibility: visible;
-} 
-
-.reviews-section label {
-    display: block;
-    margin: 0 0 10px;
 }
 
-.reviews-section textarea {
-    width: 100%;
-    height: 100px;
-}
-
-.reviews-section textarea {
-    width: 100%;
-    height: 100px;
+.review-item {
+    border-bottom: 1px solid var(--border-color);
 }
 
 .additional-info ul {
