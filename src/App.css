@@ -121,3 +121,17 @@ button:hover {
   object-fit: cover;
   border: 1px solid var(--border-color);
 }
+
+.custom-filter ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-filter ul li {
+  padding: 0;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}

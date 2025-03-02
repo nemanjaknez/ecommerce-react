@@ -56,12 +56,6 @@ const ShopWithFilters = () => {
         setPriceRange([value[0], value[1]]);
     }
 
-    useEffect(() => {
-        let filteredData = data.filter((item) => item.price >= priceRange[0] && item.price <= priceRange[1]);
-
-        setSortedData(filteredData);
-    }, [priceRange, data]);
-
     //get all movement types
     useEffect(() => {
         if (filteredData.length === 0) return;
@@ -92,16 +86,6 @@ const ShopWithFilters = () => {
         });
     }
 
-    useEffect(() => {
-
-        if(checkedValues.length) {
-            setSortedData(data.filter((item) => checkedValues.includes(item.details.movement)));
-        } else {
-            setSortedData(data);
-        }
-        
-    }, [data, checkedValues]);
-
     return(
         <div>
             <h1>Shop With Filters</h1>
@@ -109,9 +93,15 @@ const ShopWithFilters = () => {
             <Sort data={data} getSortedData={getSortedData} />
             <div className="product-list-holder">
                 <div className="product-list columns-two">
-                    {sortedData.map((item) => (
-                        <ProductListItem key={item.id} itemData={item} addToCart={addToCart} />
-                    ))}
+                    {sortedData
+                        .filter((item) => 
+                            (checkedValues.length === 0 || checkedValues.includes(item.details.movement)) &&
+                            item.price >= priceRange[0] && item.price <= priceRange[1]
+                        )
+                        .map((item) => (
+                            <ProductListItem key={item.id} itemData={item} addToCart={addToCart} />
+                        ))
+                    }
                 </div>
                 <div className="sidebar">
                     <PriceFilter

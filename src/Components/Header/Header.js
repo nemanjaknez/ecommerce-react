@@ -17,14 +17,14 @@ const Header = () => {
             </div>
             <nav>
                 <ul>
-                    <li onClick={() => setActiveItem('')}>
-                        <Link to="">Shop{activeItem === '' ? <span /> : <></>}</Link>
+                    <li onClick={() => setActiveItem('')} className={activeItem === '' ? "active" : ""}>
+                        <Link to="">Shop</Link>
                     </li>
-                    <li onClick={() => setActiveItem('shop-with-filters')}>
-                        <Link to="/shop-with-filters">Shop with Filters{activeItem === 'shop-with-filters' ? <span /> : <></>}</Link>
+                    <li onClick={() => setActiveItem('shop-with-filters')} className={activeItem === 'shop-with-filters' ? "active" : ""}>
+                        <Link to="/shop-with-filters">Shop with Filters</Link>
                     </li>
-                    <li onClick={() => setActiveItem('product-category')}>
-                        <Link to="/product-category">Product Category{activeItem === 'product-category' ? <span /> : <></>}</Link>
+                    <li onClick={() => setActiveItem('product-category')} className={activeItem === 'product-category' ? "active" : ""}>
+                        <Link to="/product-category">Product Category</Link>
                     </li>
                 </ul>
             </nav>

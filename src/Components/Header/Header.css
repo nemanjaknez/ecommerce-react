@@ -16,18 +16,29 @@ header nav ul {
     margin: 0;
 }
 
-header nav li {
+header nav li,
+header nav li a {
     position: relative;
 }
 
-header nav li span {
+header nav li a:after {
+    content: '';
+    display: block;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 2px;
-    display: block;
     background-color: var(--dark-background-color);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease-in-out;
+}
+
+header nav li.active a:after,
+header nav li a:hover:after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .additional-links {
