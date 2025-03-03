@@ -30,7 +30,8 @@ body a {
   gap: 30px;
 }
 
-button {
+button,
+a.button {
   padding: 14px 28px;
   background-color: var(--dark-background-color);
   color: #fff;
@@ -41,8 +42,15 @@ button {
   transition: all 0.25s ease-in-out;
 }
 
-button:hover {
+button:hover,
+a.button:hover {
   background-color: var(--medium-background-color);
+}
+
+a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-list {
@@ -120,6 +128,14 @@ button:hover {
   height: 100px;
   object-fit: cover;
   border: 1px solid var(--border-color);
+}
+
+.empty-cart {
+  text-align: center;
+}
+
+.empty-cart p {
+  margin: 30px 0;
 }
 
 .custom-filter ul {

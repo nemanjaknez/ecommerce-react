@@ -1,12 +1,25 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { ShopContext } from "../../Context/ShopContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
+import { useContext, useEffect, useState } from "react";
 
 const Header = () => {
 
-    const [activeItem, setActiveItem] = useState('');
+    const { cartItems } = useContext(ShopContext);
+
+    const [totalCartItems, setTotalCartItems] = useState(0);
+    
+    useEffect(() => {
+        let total = 0;
+
+        for(let i in cartItems) {
+            total += cartItems[i];
+        }
+
+        setTotalCartItems(total);
+    }, [cartItems]);
 
     return(
         <header>
@@ -17,14 +30,14 @@ const Header = () => {
             </div>
             <nav>
                 <ul>
-                    <li onClick={() => setActiveItem('')} className={activeItem === '' ? "active" : ""}>
-                        <Link to="">Shop</Link>
+                    <li>
+                        <NavLink to="" className={({isActive}) => isActive ? "active" : ""}>Shop</NavLink>
                     </li>
-                    <li onClick={() => setActiveItem('shop-with-filters')} className={activeItem === 'shop-with-filters' ? "active" : ""}>
-                        <Link to="/shop-with-filters">Shop with Filters</Link>
+                    <li>
+                        <NavLink to="/shop-with-filters" className={({isActive}) => isActive ? "active" : ""}>Shop with Filters</NavLink>
                     </li>
-                    <li onClick={() => setActiveItem('product-category')} className={activeItem === 'product-category' ? "active" : ""}>
-                        <Link to="/product-category">Product Category</Link>
+                    <li>
+                        <NavLink to="/product-category" className={({isActive}) => isActive ? "active" : ""}>Product Category</NavLink>
                     </li>
                 </ul>
             </nav>
@@ -34,6 +47,7 @@ const Header = () => {
                 </Link>
                 <Link to="/cart">
                     <FontAwesomeIcon icon={faCartShopping} />
+                    <span className="cart-count">{totalCartItems}</span>
                 </Link>
             </div>
         </header>
