@@ -12,6 +12,18 @@
     height: 100px;
 }
 
+.review-form-holder .two-columns {
+    margin-top: 28px;
+}
+
 .review-form-holder button {
     margin-top: 20px;
+}
+
+/* responsive start */
+
+@media only screen and (max-width: 600px) {
+    .review-form-holder .two-columns {
+        grid-template-columns: 1fr;
+    }
 }

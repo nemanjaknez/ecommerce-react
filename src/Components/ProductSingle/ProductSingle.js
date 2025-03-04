@@ -11,6 +11,9 @@ const ProductSingle = () => {
     const { data, addToCart } = useContext(ShopContext);
     const { productId } = useParams();
 
+    const [popupVisible, setPopupVisible] = useState(false);
+    const [animatePopup, setAnimatePopup] = useState(false);
+
     const [activeTab, setActiveTab] = useState('info');
 
     const [product, setProduct] = useState({});
@@ -34,6 +37,27 @@ const ProductSingle = () => {
         image = require('../../Assets/Images/img1.jpg');
     }
 
+    const handleAddToCart = (id) => {
+        addToCart(id);
+
+        setPopupVisible(true);
+
+        setTimeout(() => {
+            setAnimatePopup(false);
+
+            setTimeout(() => {
+                setPopupVisible(false);
+            }, 300);
+
+        }, 3000);
+    }
+
+    useEffect(() => {
+        if(popupVisible) {
+            setAnimatePopup(true);
+        }
+    }, [popupVisible]);
+
     return(
         <div className="product-single">
             <div className="content-top">
@@ -41,7 +65,7 @@ const ProductSingle = () => {
                     <img src={image} alt={product?.name} />
                 </div>
                 <div className="product-summary">
-                    <h1>{product?.brand}</h1>
+                    <h1 className="product-title">{product?.brand}</h1>
                     <p>{product?.name}</p>
                     <Rating rating={product?.rating} />
                     <p>{product?.price}</p>
@@ -50,10 +74,15 @@ const ProductSingle = () => {
                         <li>Gender: <span>{product?.gender}</span></li>
                         <li>Category: <span>{product?.category}</span></li>
                     </ul>
-                    <button
-                        className="add-to-cart"
-                        onClick={() => addToCart(product?.id)}
-                    >Add to cart</button>
+                    <div className="button-holder">
+                        <button
+                            className="add-to-cart"
+                            onClick={() => handleAddToCart(product?.id)}
+                        >Add to cart</button>
+                        {popupVisible && (
+                            <div className={`popup-message ${animatePopup ? "show" : ""}`}>Product added to cart</div>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="content-bottom">

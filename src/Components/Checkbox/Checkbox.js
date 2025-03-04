@@ -13,7 +13,7 @@ const Checkbox = ({ item, index, getCheckedValue }) => {
     }
 
     return(
-        <div className="fileter-item">
+        <div className="filter-item">
             <input 
                 type='checkbox'
                 id={`checkbox-${index}`}

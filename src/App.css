@@ -12,6 +12,8 @@ body a {
   --dark-background-color: #27374D;
   --medium-background-color: #526D82;
   --light-background-color: #9DB2BF;
+  --successful-color: #16C47F;
+  --error-color: #F93827;
 }
 
 .page-content {
@@ -28,6 +30,38 @@ body a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--light-background-color);
+  font-size: 16px;
+  line-height: 1em;
+  border-radius: 0;
+  padding: 10px;
+}
+
+input:focus,
+textarea:focus {
+  border-radius: 0;
+  outline: none;
+  border-color: var(--medium-background-color);
+}
+
+input:not([type="checkbox"]) {
+  height: 46px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  display: inline-block;
+}
+
+textarea {
+  height: 150px;
+  font-family: inherit;
 }
 
 button,
@@ -94,21 +128,31 @@ a.button {
   margin: 0 0 8px;
 }
 
-.input-holder input {
-  display: block;
-  width: 100%;
-  height: 46px;
-  border: 1px solid var(--light-background-color);
-  font-size: 20px;
-  line-height: 1em;
-  border-radius: 0;
-  padding: 10px;
+.password-input-holder {
+  position: relative;
 }
 
-.input-holder input:focus {
-  border-radius: 0;
-  outline: none;
-  border-color: var(--medium-background-color);
+.password-input-holder input {
+  padding-right: 50px;
+}
+
+.password-input-holder .icon-holder {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.password-input-holder .icon-holder:hover {
+  background-color: #ebebeb;
 }
 
 .cart-items table {

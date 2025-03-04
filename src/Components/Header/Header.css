@@ -56,4 +56,5 @@ header nav li a:hover:after {
     font-size: 12px;
     line-height: 1em;
     margin-left: 3px;
+    min-width: 15px;
 }
